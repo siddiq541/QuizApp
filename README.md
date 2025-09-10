@@ -53,7 +53,7 @@ The app uses multiple-choice questions with instant feedback and a final score s
 ## 🚀 How to Run  
 1. Clone this repository:  
    ```bash
-   git clone https://github.com/your-username/web-dev-quiz.git
+   git clone https://github.com/siddiq541/web-dev-quiz.git
 2. Open `index.html` in your browser.  
 3. Start playing 🎉  
 
