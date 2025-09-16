@@ -1,16 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <link href="assets/css/output.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <div class="header finisher-header h-screen">
-        <div class="card">
-
+    <!--Animated Background-->
+    <div class="header finisher-header w-screen min-h-screen flex justify-center items-center">
+        <!--Main Card-->
+        <div class="relative w-full max-w-[350px] h-[400px] bg-slate-200 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 shadow-2xl border border-solid border-gray-100 m-5 ">
+            <!--Main Content-->
+            <div class="absolute left-1/2 -translate-x-1/2 -mt-16">
+                <img src="assets/img/quizLogo.png" alt="Quiz App Logo" class="w-32">
+            </div>
+            <div class="flex-row justify-center items-center text-white">
+                <h1 class="text-2xl anton-regular text-center pt-20 drop-shadow-lg">Programming Challenge</h1>
+                <p class="p-2 text-sm text-center">Test your knowledge and compete for the highest score!</p>
+                <div class="flex flex-col space-y-4 mx-4">
+                    <div class="relative flex items-center ">
+                        <img src="assets/img/user.png" alt="user icon" class="w-4 absolute left-2 top-1/2 -translate-y-1/2 drop-shadow-md opacity-40">
+                        <input aria-label="name" type="text" id="username" name="username" class="bg-white/10 text-white placeholder-white/70 border border-solid border-white/70 focus:outline-none focus:ring-1 focus:ring-white mt-1 px-8 py-2 shadow-sm block w-full rounded-md sm:text-sm" placeholder="Enter Your Name">
+                    </div>
+                    <button class="group flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-indigo-500 to-purple-600 w-full text-white/40 hover:text-white transition-transform duration-300 font-semibold py-2 px-4 shadow-sm ">
+                        <span> Start Challenge</span>
+                        <img src="assets/img/play.png" alt="play icon" class="w-2 opacity-40 drop-shadow-md group-hover:opacity-100">
+                    </button>
+                </div>
+                <!--Rule Card-->
+                <div class="flex justify-center items-center mt-4">
+                    <!--Rule Content-->
+                    <div class="w-full max-w-[300px] h-[120px] bg-slate-200 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 shadow-2xl border border-solid border-gray-100">
+                        <div class="flex items-center gap-3 border-b border-white/20 px-4 py-2">
+                            <img src="assets/img/star.png" alt="star icon" class="w-4 drop-shadow">
+                            <h2 class="text-md font-bold tracking-wide">Game Rules</h2>
+                        </div>
+                        <!--Rules-->
+                        <div class="grid grid-cols-2 ml-4 mt-2 mr-4 text-xs font-medium">
+                            <div class="flex items-center gap-2 mb-1">
+                            <img src="assets/img/timer.png" alt="timer icon" class="w-5">
+                            <p>15 seconds per question</p>
+                            </div>
+                            <div class="flex items-center gap-2 mb-1 pl-2">
+                            <img src="assets/img/flash.png" alt="flash icon" class="w-4">
+                            <p>Quick answers = bonus points</p>
+                            </div>
+                            <div class="flex items-center gap-2 mb-1">
+                            <img src="assets/img/bullsEye.png" alt="bulls eye icon" class="w-5">
+                            <p>Base: 10 + (time × 2) points</p>
+                            </div>
+                            <div class="flex items-center gap-2 pl-2 mb-1">
+                            <img src="assets/img/cross.png" alt="cross icon" class="w-4">
+                            <p>Wrong answers = 0 points</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
     </div>
     <script src="assets/js/finisher-header.es5.min.js" type="text/javascript"></script>
     <script src="assets/js/bgStyles.js"></script>
