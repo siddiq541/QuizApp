@@ -65,64 +65,88 @@
         <div id="quizScreen" class="hidden relative w-full max-w-[350px] min-h-[350px] bg-white/10 rounded-3xl backdrop-blur-md shadow-2xl border border-white/20 p-6 text-white">
 
         <!-- Header: Player + Timer + Score -->
-        <div class="flex justify-between items-center mb-4">
-            <!-- Player Info -->
-            <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                <img src="assets/img/player.png" alt="user" class="w-8 opacity-80">
-            </div>
-            <div>
-                <p id="playerName" class="font-semibold"></p>
-                <p class="text-xs opacity-70">Player</p>
-            </div>
+            <div class="flex justify-between items-center mb-4">
+                <!-- Player Info -->
+                <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                    <img src="assets/img/player.png" alt="user" class="w-8 opacity-80">
+                </div>
+                <div>
+                    <p id="playerName" class="font-semibold"></p>
+                    <p class="text-xs opacity-70">Player</p>
+                </div>
+                </div>
+
+                <!-- Timer Circle -->
+                <div class="relative w-16 h-16 flex items-center justify-center">
+                <svg class="absolute -top-0 left-0 w-full h-full">
+                    <circle class="text-purple-300" stroke-width="4" stroke="currentColor" fill="transparent" r="28" cx="32" cy="32"/>
+                    <circle id="timerCircle" class="text-green-400" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="transparent" r="28" cx="32" cy="32" stroke-dasharray="176" stroke-dashoffset="0"/>
+                </svg>
+                <span id="time" class="text-lg font-bold">15</span>
+                </div>
+
+                <!-- Score -->
+                <div class="flex items-center gap-1 bg-white/10 rounded-lg px-3 py-1">
+                <img src="assets/img/star.png" alt="score" class="w-4">
+                <span id="score" class="font-semibold">0</span>
+                </div>
             </div>
 
-            <!-- Timer Circle -->
-            <div class="relative w-16 h-16 flex items-center justify-center">
-            <svg class="absolute -top-0 left-0 w-full h-full">
-                <circle class="text-purple-300" stroke-width="4" stroke="currentColor" fill="transparent" r="28" cx="32" cy="32"/>
-                <circle id="timerCircle" class="text-green-400" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="transparent" r="28" cx="32" cy="32" stroke-dasharray="176" stroke-dashoffset="0"/>
-            </svg>
-            <span id="time" class="text-lg font-bold">15</span>
+            <!-- Progress -->
+            <div class="flex justify-between items-center text-xs mb-2">
+                <span id="step" class="opacity-80">Question 1 of 6</span>
+                <span id="progressText" class="opacity-80">5% Complete</span>
+            </div>
+            <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden mb-6">
+                <div id="progressBar" class="bg-gradient-to-r from-purple-500 to-indigo-500 h-2 w-[5%] transition-all"></div>
             </div>
 
-            <!-- Score -->
-            <div class="flex items-center gap-1 bg-white/10 rounded-lg px-3 py-1">
-            <img src="assets/img/star.png" alt="score" class="w-4">
-            <span id="score" class="font-semibold">0</span>
+            <!-- Question -->
+            <div id="quizContent">
+                <h2 id="questionText" class="text-xl font-bold text-center mb-6">
+                    Which planet is known as the Red Planet?
+                </h2>
+
+                <!-- Options -->
+                <div class="grid grid-cols-2 gap-4">
+
+                    <button class="optionBtn bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl py-3 font-medium hover:bg-white/20 transition">
+                    A. Earth
+                    </button>
+                    <button class="optionBtn bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl py-3 font-medium hover:bg-white/20 transition">
+                    B. Mars
+                    </button>
+                    <button class="optionBtn bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl py-3 font-medium hover:bg-white/20 transition">
+                    C. Jupiter
+                    </button>
+                    <button class="optionBtn bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl py-3 font-medium hover:bg-white/20 transition">
+                    D. Venus
+                    </button>
+                </div>
             </div>
         </div>
+        <!-- Results Screen -->
+        <div id="resultScreen" class=" hidden relative w-full max-w-[350px] h-[300px] bg-slate-200 rounded-3xl 
+            bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 shadow-2xl border border-solid border-gray-100 m-5 flex flex-col items-center justify-center text-center">
+            
+            <!-- Icon -->
+            <img src="assets/img/trophy.png" alt="Trophy Icon" class="w-8 mt-4 mb-4 drop-shadow-lg">
 
-        <!-- Progress -->
-        <div class="flex justify-between items-center text-xs mb-2">
-            <span id="step" class="opacity-80">Question 1 of 6</span>
-            <span id="progressText" class="opacity-80">5% Complete</span>
-        </div>
-        <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden mb-6">
-            <div id="progressBar" class="bg-gradient-to-r from-purple-500 to-indigo-500 h-2 w-[5%] transition-all"></div>
-        </div>
+            <!-- Headings -->
+            <h2 class="text-2xl font-bold text-white drop-shadow">Quiz Complete!</h2>
+            <p class="mt-1 text-white/80">Amazing work, <span id="playerNameResult"></span>!</p>
 
-        <!-- Question -->
-        <div id="quizContent">
-            <h2 id="questionText" class="text-xl font-bold text-center mb-6">
-                Which planet is known as the Red Planet?
-            </h2>
+            <!-- Final Score -->
+            <p class="mt-4 text-sm text-white/70">FINAL SCORE</p>
+            <p id="finalScore" class="text-4xl font-extrabold text-purple-300 drop-shadow">0</p>
+            <p class="text-sm text-white/60">points</p>
 
-            <!-- Options -->
-            <div class="grid grid-cols-2 gap-4">
-                <button class="optionBtn bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl py-3 font-medium hover:bg-white/20 transition">
-                A. Earth
-                </button>
-                <button class="optionBtn bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl py-3 font-medium hover:bg-white/20 transition">
-                B. Mars
-                </button>
-                <button class="optionBtn bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl py-3 font-medium hover:bg-white/20 transition">
-                C. Jupiter
-                </button>
-                <button class="optionBtn bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl py-3 font-medium hover:bg-white/20 transition">
-                D. Venus
-                </button>
-            </div>
+            <!-- Restart Button -->
+            <button id="restartBtn" class="mt-6 mb-4rounded-md bg-gradient-to-r from-indigo-500 to-purple-600 w-40 
+                text-white hover:scale-105 transition-transform duration-300 font-semibold py-2 px-4 shadow-md">
+                Restart Quiz
+            </button>
         </div>
     </div>
 
