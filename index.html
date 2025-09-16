@@ -12,7 +12,7 @@
     <!--Animated Background-->
     <div class="header finisher-header w-screen min-h-screen flex justify-center items-center">
         <!--Main Card-->
-        <div class="relative w-full max-w-[350px] h-[400px] bg-slate-200 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 shadow-2xl border border-solid border-gray-100 m-5 ">
+        <div id="startScreen" class="relative w-full max-w-[350px] h-[400px] bg-slate-200 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 shadow-2xl border border-solid border-gray-100 m-5 ">
             <!--Main Content-->
             <div class="absolute left-1/2 -translate-x-1/2 -mt-16">
                 <img src="assets/img/quizLogo.png" alt="Quiz App Logo" class="w-32">
@@ -25,7 +25,7 @@
                         <img src="assets/img/user.png" alt="user icon" class="w-4 absolute left-2 top-1/2 -translate-y-1/2 drop-shadow-md opacity-40">
                         <input aria-label="name" type="text" id="username" name="username" class="bg-white/10 text-white placeholder-white/70 border border-solid border-white/70 focus:outline-none focus:ring-1 focus:ring-white mt-1 px-8 py-2 shadow-sm block w-full rounded-md sm:text-sm" placeholder="Enter Your Name">
                     </div>
-                    <button class="group flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-indigo-500 to-purple-600 w-full text-white/40 hover:text-white transition-transform duration-300 font-semibold py-2 px-4 shadow-sm ">
+                    <button id="startBtn" class="group flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-indigo-500 to-purple-600 w-full text-white/40 hover:text-white transition-transform duration-300 font-semibold py-2 px-4 shadow-sm ">
                         <span> Start Challenge</span>
                         <img src="assets/img/play.png" alt="play icon" class="w-2 opacity-40 drop-shadow-md group-hover:opacity-100">
                     </button>
