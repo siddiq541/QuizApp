@@ -1,16 +1,22 @@
-const StartQuiz=(event) =>{
-    event.preventDefault();
-    const username = document.getElementById('username').value.trim();
-    if (username==''){
-        input.classList.add('ring-2', 'ring-red-500');
+let username = ""; // global variable
 
-    }else{
-        //next screen
-        document.getElementById('startScreen').classList.add('hidden');
-        document.getElementById('quizScreen').classList.remove('hidden');
-        document.getElementById("playerName").textContent = username;
-    }
+const StartQuiz = (event) => {
+  event.preventDefault();
+  username = document.getElementById('username').value.trim();
+  if (!username) {
+    input.classList.add('ring-2', 'ring-red-500');
+  } else {
+    document.getElementById('startScreen').classList.add('hidden');
+    document.getElementById('quizScreen').classList.remove('hidden');
+    document.getElementById("playerName").textContent = username;
+
+    currentQ = 0;
+    score = 0;
+    loadQuestion(); // start the quiz
+  }
 };
+
+
 const input = document.getElementById('username');
 input.addEventListener('input', () => {
   input.classList.remove('ring-2', 'ring-red-[#ef3a3a]');
@@ -85,18 +91,6 @@ function loadQuestion() {
     startTimer();
 }
 
-// Reset options & timer
-function resetState() {
-  clearInterval(timer);
-  timeLeft = 15;
-  timeEl.textContent = timeLeft;
-  timerCircle.style.strokeDashoffset = 0;
-  optionBtns.forEach(btn => {
-    btn.disabled = false;
-    btn.classList.remove("bg-green-500/70", "bg-red-500/70");
-  });
-}
-
 // Timer function
 function startTimer() {
   const circumference = 176; // stroke-dasharray
@@ -122,50 +116,84 @@ function checkAnswer(btn, selected, correct) {
   clearInterval(timer);
 
   if (selected === correct) {
-    score += 10 + (timeLeft * 2);
-    btn.classList.add("bg-green-500/70");
+    score += 10 + timeLeft * 2;
+    btn.classList.add("bg-green-500", "bg-opacity-70", "text-white");
   } else {
-    btn.classList.add("bg-red-500/70");
+    btn.classList.add("bg-red-500", "bg-opacity-70", "text-white");
+
+    // Highlight correct answer
     optionBtns.forEach(b => {
       if (b.textContent.includes(correct)) {
-        b.classList.add("bg-green-500/70");
+        b.classList.add("bg-green-500", "bg-opacity-70", "text-white");
       }
     });
   }
 
-  scoreEl.textContent = score;
+  // Disable all buttons
   optionBtns.forEach(b => (b.disabled = true));
 
+  // Update score
+  scoreEl.textContent = score;
+
+  // Move to next question
   setTimeout(nextQuestion, 1500);
 }
+
 
 // Next Question
 function nextQuestion() {
   currentQ++;
   if (currentQ < quizData.length) {
     const quizContent = document.getElementById("quizContent");
-    // fade out
     quizContent.classList.add("opacity-0");
 
     setTimeout(() => {
-    loadQuestion(); // change the content
-    quizContent.classList.remove("opacity-0"); // fade back in
-    }, 300); // match your CSS transition time
+      loadQuestion();
+      quizContent.classList.remove("opacity-0");
+    }, 300);
 
-    loadQuestion();
   } else {
+    // End of quiz: show results
+    clearInterval(timer);
     progressBar.style.width = "100%";
     progressText.textContent = "100% Complete";
-
     endQuiz();
+    showResults();
+
   }
 }
-
 // End Quiz
 function endQuiz() {
-  questionText.textContent = "🎉 Quiz Finished!";
-  document.querySelector(".grid").innerHTML = `<p class="text-center">Your final score: <b>${score}</b></p>`;
+    clearInterval(timer); // stop any running timer
+}
+function showResults() {
+    document.getElementById("quizScreen").classList.add("hidden");
+    document.getElementById("resultScreen").classList.remove("hidden");
+
+    document.getElementById("playerNameResult").textContent = username;
+    document.getElementById("finalScore").textContent = score;
 }
 
-// Start
-loadQuestion();
+function resetState() {
+  clearInterval(timer);
+  timeLeft = 15;
+  timeEl.textContent = timeLeft;
+  timerCircle.style.strokeDashoffset = 0;
+
+  optionBtns.forEach(btn => {
+    btn.disabled = false;
+    btn.classList.remove(
+      "bg-green-500",
+      "bg-red-500",
+      "bg-opacity-70",
+      "text-white"
+    );
+  });
+}
+// Restart Button
+document.getElementById("restartBtn").addEventListener("click", () => {
+  score = 0;
+  currentQ = 0;
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("startScreen").classList.remove("hidden");
+});
